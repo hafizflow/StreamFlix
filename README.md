@@ -2,6 +2,8 @@
 
 A professional iOS video streaming application demonstrating OTT platform capabilities.
 
+<img width="2363" height="1219" alt="Untitled design" src="https://github.com/user-attachments/assets/b4ad92d2-4c24-4846-a93e-ac282f45ba56" />
+
 ## Features
 - ✅ HLS Video Streaming with AVFoundation
 - ✅ Clean MVVM Architecture
