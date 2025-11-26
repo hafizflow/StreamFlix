@@ -7,7 +7,7 @@ protocol VideoServiceProtocol {
 }
 
 class VideoService: VideoServiceProtocol {
-    static let shared = VideoService()
+    nonisolated static let shared = VideoService()
     private init() {}
     
         // For demo purposes, we'll use local data
