@@ -5,7 +5,6 @@ struct VideoCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-                // Thumbnail
             AsyncImage(url: URL(string: video.thumbnailURL)) { image in
                 image
                     .resizable()
@@ -21,7 +20,6 @@ struct VideoCardView: View {
             .frame(width: 120, height: 180)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             
-                // Title
             Text(video.title)
                 .font(.caption)
                 .fontWeight(.medium)
