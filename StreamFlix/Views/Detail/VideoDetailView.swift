@@ -10,7 +10,6 @@ struct VideoDetailView: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                        // Thumbnail with play button
                     ZStack {
                         AsyncImage(url: URL(string: video.thumbnailURL)) { image in
                             image
@@ -39,7 +38,6 @@ struct VideoDetailView: View {
                     }
                     
                     VStack(alignment: .leading, spacing: 16) {
-                            // Title
                         Text(video.title)
                             .font(.title)
                             .fontWeight(.bold)
@@ -49,7 +47,7 @@ struct VideoDetailView: View {
                         HStack(spacing: 12) {
                             Text(String(video.releaseYear))
                             Text("•")
-                            Text(video.duration.formatAsTime())
+                            Text(Double(video.duration).formatAsTime())
                             Text("•")
                             HStack(spacing: 4) {
                                 Image(systemName: "star.fill")

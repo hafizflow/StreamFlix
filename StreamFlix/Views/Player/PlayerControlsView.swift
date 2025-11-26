@@ -11,19 +11,27 @@ struct PlayerControlsView: View {
             VStack(spacing: 16) {
                     // Progress bar
                 VStack(spacing: 4) {
-                    Slider(
-                        value: Binding(
-                            get: { viewModel.currentTime },
-                            set: { viewModel.seek(to: $0) }
-                        ),
-                        in: 0...max(viewModel.duration, 1)
-                    )
-                    .tint(.red)
+                        // Safe slider with valid range
+                    if viewModel.duration > 0 {
+                        Slider(
+                            value: Binding(
+                                get: { viewModel.currentTime },
+                                set: { viewModel.seek(to: $0) }
+                            ),
+                            in: 0...viewModel.duration
+                        )
+                        .tint(.red)
+                    } else {
+                            // Placeholder while duration loads
+                        Slider(value: .constant(0), in: 0...1)
+                            .tint(.red)
+                            .disabled(true)
+                    }
                     
                     HStack {
                         Text(viewModel.currentTime.formatAsTime())
                         Spacer()
-                        Text(viewModel.duration.formatAsTime())
+                        Text(viewModel.duration > 0 ? viewModel.duration.formatAsTime() : "--:--")
                     }
                     .font(.caption)
                     .foregroundColor(.white)
@@ -37,6 +45,7 @@ struct PlayerControlsView: View {
                         Image(systemName: "gobackward.10")
                             .font(.title)
                     }
+                    .disabled(viewModel.duration <= 0)
                     
                     Button {
                         viewModel.togglePlayPause()
@@ -51,6 +60,7 @@ struct PlayerControlsView: View {
                         Image(systemName: "goforward.10")
                             .font(.title)
                     }
+                    .disabled(viewModel.duration <= 0)
                 }
                 .foregroundColor(.white)
             }
